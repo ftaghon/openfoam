@@ -1,0 +1,9 @@
+docker login
+docker build -t taghon/openfoam .
+docker push taghon/opefoam
+
+docker login
+docker pull taghon/openfoam
+
+docker run --rm -it -v /dossier_hote:/OpenFOAM taghon/openfoam /bin/bash
+
