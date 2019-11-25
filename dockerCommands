@@ -5,5 +5,5 @@ docker push taghon/opefoam
 docker login
 docker pull taghon/openfoam
 
-docker run --rm -it -v /dossier_hote:/OpenFOAM taghon/openfoam /bin/bash
+docker run --rm -it -v /dossier_hote:/home/foamer/partage taghon/openfoam /bin/bash
 
