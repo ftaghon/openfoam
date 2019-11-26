@@ -1,9 +1,5 @@
 FROM ubuntu:18.04
 
-# Installing apt-utils
-RUN apt-get update -y
-RUN apt-get install -y apt-utils
-
 # Installing wget and add-apt-repository
 RUN apt-get update
 RUN apt-get install -y software-properties-common wget
@@ -12,9 +8,9 @@ RUN apt-get install -y software-properties-common wget
 RUN sh -c "wget -O - http://dl.openfoam.org/gpg.key | apt-key add -"
 RUN add-apt-repository http://dl.openfoam.org/ubuntu
 
-# Installing OpenFOAM
+# Installing OpenFOAM (without paraview)
 RUN apt-get update
-RUN apt-get -y install openfoam7
+RUN apt-get install -y --no-install-recommends openfoam7
 
 # Cleaning the environment
 RUN apt-get clean autoclean
@@ -32,4 +28,5 @@ WORKDIR /home/foamer/OpenFOAM/foamer-7/run
 # Setting environment variables
 RUN echo 'source /opt/openfoam7/etc/bashrc' >> /home/foamer/.bashrc
 
-
+# Copying tutorials directory into FOAM_RUN
+RUN cp -r /opt/openfoam7/tutorials /home/foamer/OpenFOAM/foamer-7/run/tutorials

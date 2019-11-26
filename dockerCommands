@@ -1,9 +1,8 @@
 docker login
-docker build -t taghon/openfoam .
-docker push taghon/opefoam
+docker build -t taghon/openfoam:latest .
+docker push taghon/opefoam:latest
 
 docker login
-docker pull taghon/openfoam
+docker pull taghon/openfoam:latest
 
-docker run --rm -it -v /dossier_hote:/home/foamer/partage taghon/openfoam /bin/bash
-
+docker run --rm -it -v /dossier_hote:/home/foamer/OpenFOAM/foamer-7/run taghon/openfoam:latest
